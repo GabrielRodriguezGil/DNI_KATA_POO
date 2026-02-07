@@ -9,9 +9,9 @@ def tablaAsignacion():
     return TablaAsignacion()
 
 
-def test_getTabla(tabla):
+def test_get_tabla(tabla):
 
-    assert tabla.getTabla() == [
+    assert tabla.get_tabla() == [
         "T",
         "R",
         "W",
@@ -38,30 +38,26 @@ def test_getTabla(tabla):
     ]
 
 
-def test_getLetra(tabla):
-    assert tabla.getLetra(0) == "T"
-    assert tabla.getLetra(22) == "E"
-    assert tabla.getLetra(30) == "Posicion letra fuera de rango"
+def test_get_letra(tabla):
+    assert tabla.get_letra(0) == "T"
+    assert tabla.get_letra(22) == "E"
+    assert tabla.get_letra(30) == "Posicion letra fuera de rango"
 
 
-def test_getModulo(tabla):
-    assert tabla.getModulo() == 23
-
-
-def test_isLetraPermitida(tabla):
-    assert tabla.isLetraPermitida("T")
-    assert not tabla.isLetraPermitida("I")
+def test_is_letra_permitida(tabla):
+    assert tabla.is_letra_permitida("T")
+    assert not tabla.is_letra_permitida("I")
 
 
 @pytest.mark.parametrize("dni", CASOS_TEST_CORRECTOS)
-def test_calcularLetra_correcta(tabla, dni):
+def test_calcular_letra_correcta(tabla, dni):
     numero_dni = dni[:-1]
     letra = dni[-1]
-    assert tabla.calcularLetra(numero_dni) == letra
+    assert tabla.get_letra_dni(numero_dni) == letra
 
 
 @pytest.mark.parametrize("dni", CASOS_TEST_LETRA_PROHIBIDA)
-def test_calcularLetra_incorrecta(tabla, dni):
+def test_calcular_letra_incorrecta(tabla, dni):
     numero_dni = dni[:-1]
     letra = dni[-1]
-    assert tabla.calcularLetra(numero_dni) != letra
+    assert tabla.get_letra_dni(numero_dni) != letra
